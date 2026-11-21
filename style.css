@@ -187,3 +187,84 @@ footer{background:#3b1725;color:#f8e8eb;padding-top:50px}.footer-main{display:gr
   .journal-img { width: 96px; height: 104px; }
   .skin-orbit { transform: scale(.68); }
 }
+
+
+/* Multi-page GLOWÉ experience */
+.icon-action {text-decoration:none}
+.inner-hero{margin-top:36px;padding:62px 7%;border-radius:26px;background:linear-gradient(115deg,#fff7f7,#f8e6e9);position:relative;overflow:hidden}
+.inner-hero:after{content:"G";position:absolute;left:5%;top:-70px;font-family:Georgia,serif;font-size:280px;color:rgba(102,2,31,.055);pointer-events:none}
+.inner-hero h1{font-size:clamp(30px,4vw,48px);color:#66021f;margin:12px 0}
+.inner-hero p{max-width:650px;color:#6d5960;line-height:2}
+.inner-hero-links{display:flex;gap:24px;margin-top:22px;flex-wrap:wrap}
+.inner-hero-links a,.text-link{color:#66021f;font-weight:700;text-decoration:none}
+.page-section{margin-top:56px;margin-bottom:60px}
+.shop-category-row{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 44px}
+.shop-category-row a{padding:13px 22px;border:1px solid #ead5db;border-radius:30px;color:#66021f;text-decoration:none;background:#fff}
+.shop-category-row a:hover{background:#66021f;color:white}
+.shop-heading{margin-top:20px}
+.shop-product-grid{margin-top:25px}
+.shop-count{color:#8c747d;font-size:13px}
+.brand-strip{padding:34px;border-radius:22px;background:#fff7f8}
+.brand-strip h2{margin:8px 0 22px;color:#66021f}
+.about-story{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+.about-story h2,.contact-info h2{font-size:30px;color:#66021f;line-height:1.7}
+.about-story p,.contact-info p{line-height:2.1;color:#75656b}
+.about-art{min-height:360px;border-radius:24px;background:radial-gradient(circle at 30% 30%,#f6c8d2,transparent 35%),linear-gradient(135deg,#66021f,#9d3455 55%,#f4d7dd);display:grid;place-items:center;overflow:hidden}
+.about-art-card{width:58%;height:250px;border:1px solid rgba(255,255,255,.6);border-radius:48% 48% 20px 20px;background:rgba(255,255,255,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;box-shadow:0 20px 50px #30000f55}
+.about-art-card span{font-family:Georgia,serif;font-size:120px;line-height:1}
+.about-art-card small{letter-spacing:3px}
+.about-values{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.about-values>div{padding:28px;border:1px solid #f0dfe3;border-radius:18px;background:#fff}
+.about-values b{font-size:30px;color:#a84b68}
+.about-values h3{color:#66021f}
+.about-values p{color:#806e75;line-height:1.8}
+.contact-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:55px;align-items:start}
+.contact-method{display:flex;gap:14px;align-items:center;margin:24px 0}
+.contact-method>b{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:#f8e8ec;color:#66021f;font-size:22px}
+.contact-method div{display:grid;gap:4px}
+.contact-method span{color:#806e75;direction:ltr;text-align:right}
+.demo-note{display:block;color:#9a7b85;line-height:1.8;margin-top:26px}
+.contact-form,.cart-summary{padding:30px;border-radius:20px;background:#fff8f9;border:1px solid #f0dfe3}
+.contact-form h2,.cart-summary h2{color:#66021f;margin-top:0}
+.contact-form label{display:grid;gap:8px;margin:16px 0;color:#604b53;font-size:14px}
+.contact-form input,.contact-form textarea{width:100%;border:1px solid #ead7dd;border-radius:10px;padding:13px;background:white;font:inherit;outline:none}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#9d3455}
+.contact-form textarea{resize:vertical}
+.contact-form .btn{border:0;cursor:pointer;font:inherit}
+#contactMessage{display:block;margin-top:12px;color:#477b58}
+.faq-section h2{color:#66021f}
+.faq-section details{padding:18px 20px;border-bottom:1px solid #eedfe3}
+.faq-section summary{cursor:pointer;font-weight:700;color:#614a53}
+.faq-section details p{color:#806e75;line-height:1.9}
+.journal-feature{display:grid;grid-template-columns:1.1fr 1fr;gap:42px;align-items:center}
+.journal-feature .journal-img{min-height:320px;border-radius:20px}
+.journal-feature h2{font-size:30px;color:#66021f;line-height:1.7}
+.journal-feature p,.journal-page-grid p{line-height:2;color:#806e75}
+.journal-page-heading{margin-top:60px}
+.journal-page-grid article{background:#fff;border:1px solid #f1e4e7;padding:12px;border-radius:16px}
+.journal-page-grid article h3{color:#5b2638;line-height:1.8}
+.cart-page{display:grid;grid-template-columns:1.5fr .8fr;gap:24px;align-items:start}
+.cart-empty{min-height:280px;border:1px dashed #e7cbd3;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px}
+.cart-empty>span{font-size:48px;color:#a84b68}
+.cart-empty h2{color:#66021f}
+.cart-empty p{color:#806e75}
+.cart-summary>div{display:flex;justify-content:space-between;gap:12px;margin:20px 0;color:#6d5960}
+.cart-summary strong{color:#66021f}
+.cart-summary .btn{width:100%;border:0;cursor:pointer;font:inherit;margin:12px 0}
+.cart-summary small{color:#987e87;line-height:1.8}
+.cart-line{display:grid;grid-template-columns:1fr auto;gap:12px;padding:18px;border:1px solid #f0dfe3;border-radius:14px;margin-bottom:12px;background:#fff}
+.cart-line h3{margin:0 0 8px;color:#66021f;font-size:16px}
+.cart-line p{margin:0;color:#806e75}
+.cart-line button{border:0;background:#f8e8ec;color:#66021f;border-radius:8px;padding:8px 12px;cursor:pointer}
+@media(max-width:760px){
+ .inner-hero{margin-top:20px;padding:38px 24px;border-radius:18px}
+ .inner-hero:after{font-size:180px;top:-35px}
+ .page-section{margin-top:38px;margin-bottom:42px}
+ .about-story,.contact-layout,.journal-feature,.cart-page{grid-template-columns:1fr;gap:28px}
+ .about-art{min-height:260px}
+ .about-values{grid-template-columns:1fr}
+ .journal-feature .journal-img{min-height:230px}
+ .contact-form,.cart-summary{padding:22px}
+ .shop-category-row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px}
+ .shop-category-row a{white-space:nowrap}
+}
