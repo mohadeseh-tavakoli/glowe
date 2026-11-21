@@ -2,11 +2,12 @@ const toast=document.getElementById('toast');
 let toastTimer;
 function showToast(message){if(!toast)return;toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2400)}
 const CART_KEY='gloweCart';
+function parseLocalizedNumber(value){const normalized=String(value).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));return Number(normalized.replace(/[^0-9]/g,''))||0;}
 function readCart(){try{return JSON.parse(localStorage.getItem(CART_KEY)||'[]')}catch(e){return []}}
 function saveCart(items){localStorage.setItem(CART_KEY,JSON.stringify(items));updateCartCount()}
 function updateCartCount(){const count=readCart().reduce((s,p)=>s+p.qty,0);const el=document.getElementById('cartCount');if(el)el.textContent=count.toLocaleString('fa-IR')}
 function addToCart(name,price){const items=readCart();const found=items.find(p=>p.name===name);if(found)found.qty++;else items.push({name,price,qty:1});saveCart(items);showToast(`${name} به سبد خرید اضافه شد.`)}
-document.querySelectorAll('.add-cart').forEach(btn=>btn.addEventListener('click',()=>{const card=btn.closest('.product-card');const name=btn.dataset.product||card?.querySelector('h3')?.textContent||'محصول';const raw=card?.querySelector('.price-row strong')?.innerText||'';const price=Number(raw.replace(/[^\d]/g,''))||0;addToCart(name,price)}));
+document.querySelectorAll('.add-cart').forEach(btn=>btn.addEventListener('click',()=>{const card=btn.closest('.product-card');const name=btn.dataset.product||card?.querySelector('h3')?.textContent||'محصول';const raw=card?.querySelector('.price-row strong')?.innerText||'';const price=parseLocalizedNumber(raw);addToCart(name,price)}));
 document.querySelectorAll('.heart').forEach(btn=>btn.addEventListener('click',()=>{btn.classList.toggle('liked');btn.textContent=btn.classList.contains('liked')?'♥':'♡';showToast(btn.classList.contains('liked')?'به علاقه‌مندی‌ها اضافه شد.':'از علاقه‌مندی‌ها حذف شد.')}));
 const searchForm=document.getElementById('searchForm');
 if(searchForm)searchForm.addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('searchInput').value.trim();if(document.querySelector('.shop-product-grid')){filterShop(q)}else if(document.getElementById('bestsellers')){const cards=[...document.querySelectorAll('#productGrid .product-card')];let count=0;cards.forEach(card=>{const match=!q||card.innerText.toLowerCase().includes(q.toLowerCase())||(card.dataset.search||'').toLowerCase().includes(q.toLowerCase());card.style.display=match?'':'none';if(match)count++});document.getElementById('bestsellers').scrollIntoView({behavior:'smooth'});showToast(q?(count?`${count} محصول پیدا شد.`:'محصولی پیدا نشد.'):'نمایش محصولات پرفروش')}else location.href='store.html'+(q?'?q='+encodeURIComponent(q):'')});
@@ -32,3 +33,11 @@ function escapeText(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':
 renderCart();
 const checkout=document.getElementById('checkoutButton');if(checkout)checkout.addEventListener('click',()=>showToast('اتصال به پرداخت در نسخه نمایشی فعال نیست.'));
 const contactForm=document.getElementById('contactForm');if(contactForm)contactForm.addEventListener('submit',e=>{e.preventDefault();document.getElementById('contactMessage').textContent='پیام شما در این نسخه نمایشی ثبت شد. برای دریافت واقعی پیام باید فرم به سرویس ارسال متصل شود.';contactForm.reset()});
+
+let detailQty=1;
+const qtyValue=document.getElementById('productQty');
+const qtyMinus=document.getElementById('qtyMinus'),qtyPlus=document.getElementById('qtyPlus');
+if(qtyMinus)qtyMinus.addEventListener('click',()=>{detailQty=Math.max(1,detailQty-1);if(qtyValue)qtyValue.textContent=detailQty.toLocaleString('fa-IR')});
+if(qtyPlus)qtyPlus.addEventListener('click',()=>{detailQty=Math.min(20,detailQty+1);if(qtyValue)qtyValue.textContent=detailQty.toLocaleString('fa-IR')});
+const detailAdd=document.getElementById('detailAddCart');
+if(detailAdd)detailAdd.addEventListener('click',()=>{const itemName='اسنس حلزون COSRX';const items=readCart();const found=items.find(p=>p.name===itemName);if(found)found.qty+=detailQty;else items.push({name:itemName,price:1280000,qty:detailQty});saveCart(items);showToast('محصول به سبد خرید اضافه شد.')});

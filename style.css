@@ -268,3 +268,44 @@ footer{background:#3b1725;color:#f8e8eb;padding-top:50px}.footer-main{display:gr
  .shop-category-row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px}
  .shop-category-row a{white-space:nowrap}
 }
+
+
+/* Product detail page */
+.product-breadcrumb{display:flex;gap:10px;align-items:center;margin-top:24px;color:#9a818a;font-size:13px;flex-wrap:wrap}
+.product-breadcrumb a{color:#66021f;text-decoration:none}
+.product-detail{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.product-detail-image{position:relative;background:#fff7f8;border-radius:24px;min-height:500px;display:grid;place-items:center;overflow:hidden;padding:36px}
+.product-detail-image img{width:100%;max-height:470px;object-fit:contain;mix-blend-mode:multiply}
+.product-detail-tag{position:absolute;top:22px;right:22px;background:#66021f;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px}
+.product-detail-info h1{font-size:30px;line-height:1.8;color:#4e1729;margin:12px 0}
+.detail-rating{color:#c28a42;letter-spacing:2px}
+.detail-rating span{color:#8c747d;letter-spacing:0;font-size:13px;margin-right:8px}
+.product-detail-intro{line-height:2.1;color:#78666d;margin:22px 0}
+.detail-price{font-size:27px;font-weight:800;color:#66021f;margin:24px 0}
+.detail-price small{font-size:14px;font-weight:500}
+.detail-quantity{display:flex;align-items:center;gap:22px;margin:20px 0}
+.detail-quantity>div{display:flex;align-items:center;border:1px solid #ead5db;border-radius:10px;overflow:hidden}
+.detail-quantity button{border:0;background:#fff4f6;color:#66021f;width:40px;height:38px;font-size:20px;cursor:pointer}
+.detail-quantity strong{min-width:42px;text-align:center}
+.product-add-button{width:100%;border:0;cursor:pointer;font:inherit;padding:16px}
+.product-assurances{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0;padding:20px 0;border-top:1px solid #f0dfe3;border-bottom:1px solid #f0dfe3}
+.product-assurances>div{display:flex;gap:8px;align-items:center}
+.product-assurances b{color:#a84b68;font-size:22px}
+.product-assurances span{display:grid;gap:5px}
+.product-assurances strong{font-size:12px;color:#5c3542}
+.product-assurances small{font-size:10px;color:#967e86}
+.product-description h2{font-size:20px;color:#66021f}
+.product-description p{line-height:2.1;color:#78666d}
+.product-title-link{color:inherit;text-decoration:none}
+.product-detail-link{display:block;color:inherit;text-decoration:none}
+.product-detail-link .product-image{height:100%}
+.suggested-note{color:#78666d}
+.suggested-note a{color:#66021f;font-weight:700}
+@media(max-width:760px){
+ .product-detail{grid-template-columns:1fr;gap:28px}
+ .product-detail-image{min-height:300px;padding:22px}
+ .product-detail-image img{max-height:320px}
+ .product-detail-info h1{font-size:23px}
+ .product-assurances{gap:7px}
+ .product-assurances>div{flex-direction:column;align-items:flex-start}
+}
