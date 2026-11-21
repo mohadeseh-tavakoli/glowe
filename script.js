@@ -40,4 +40,4 @@ const qtyMinus=document.getElementById('qtyMinus'),qtyPlus=document.getElementBy
 if(qtyMinus)qtyMinus.addEventListener('click',()=>{detailQty=Math.max(1,detailQty-1);if(qtyValue)qtyValue.textContent=detailQty.toLocaleString('fa-IR')});
 if(qtyPlus)qtyPlus.addEventListener('click',()=>{detailQty=Math.min(20,detailQty+1);if(qtyValue)qtyValue.textContent=detailQty.toLocaleString('fa-IR')});
 const detailAdd=document.getElementById('detailAddCart');
-if(detailAdd)detailAdd.addEventListener('click',()=>{const itemName='اسنس حلزون COSRX';const items=readCart();const found=items.find(p=>p.name===itemName);if(found)found.qty+=detailQty;else items.push({name:itemName,price:1280000,qty:detailQty});saveCart(items);showToast('محصول به سبد خرید اضافه شد.')});
+if(detailAdd)detailAdd.addEventListener('click',()=>{const itemName='اسنس حلزون COSRX';const items=readCart();const found=items.find(p=>p.name===itemName);if(found)found.qty+=detailQty;else items.push({name:itemName,price:5500000,qty:detailQty});saveCart(items);showToast('محصول به سبد خرید اضافه شد.')});

@@ -359,3 +359,5 @@ footer{background:#3b1725;color:#f8e8eb;padding-top:50px}.footer-main{display:gr
 /* GLOWÉ beauty journal editorial cover */
 .journal-feature .journal-img.journal-one{background-image:url('assets/journal/glowe-beauty-editorial.png');background-size:cover;background-position:center 48%;}
 .journal-feature .journal-img.journal-one:before{display:none;}
+
+.brand-logos a.brand-pill{display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}.brand-logos a.brand-pill:hover,.brand-logos a.brand-pill:focus-visible{transform:translateY(-3px);box-shadow:0 12px 24px #66021f20;outline:2px solid #d9a6b1;outline-offset:2px}
