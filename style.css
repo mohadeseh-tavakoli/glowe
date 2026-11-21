@@ -429,3 +429,19 @@ footer{background:#3b1725;color:#f8e8eb;padding-top:50px}.footer-main{display:gr
   #gloweAddedProducts .product-card>.product-detail-link{flex-basis:165px;height:165px;min-height:165px}
   .product-info .product-title-link h3{min-height:40px;font-size:11px}
 }
+
+
+/* Homepage journal cards: use the same real editorial photos as the journal page */
+#journal .journal-grid .journal-one{
+  background-image:url('assets/journal/journal-routine.jpg');
+  background-size:cover;background-position:center;
+}
+#journal .journal-grid .journal-two{
+  background-image:url('assets/journal/journal-ingredients.jpg');
+  background-size:cover;background-position:center;
+}
+#journal .journal-grid .journal-three{
+  background-image:url('assets/journal/journal-sunscreen.jpg');
+  background-size:cover;background-position:center;
+}
+#journal .journal-grid .journal-img:before{display:none}
