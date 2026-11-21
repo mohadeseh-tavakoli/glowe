@@ -116,12 +116,95 @@ const GLOWE_PRODUCTS = [
     "price": 8500000,
     "category": "مراقبت پوست"
   }
+,
+  {
+    "id": "cosrx-snail-96",
+    "name": "اسنس حلزون Advanced Snail 96 کوزارکس",
+    "brand": "COSRX",
+    "image": "https://skininseoul.com/cdn/shop/products/019000000009.png?v=1638042384",
+    "description": "اسنس حلزون با بافت سبک برای آبرسانی و کمک به لطافت و شادابی ظاهر پوست.",
+    "price": 5500000,
+    "category": "مراقبت پوست"
+  },
+  {
+    "id": "boj-relief-sun",
+    "name": "ضدآفتاب Relief Sun بیوتی آف جوسان",
+    "brand": "BEAUTY OF JOSEON",
+    "image": "https://cdn-image.oliveyoung.com/prdtImg/1622/4241eb91-a4c6-4f0a-bb58-f66379c9247c.jpg",
+    "description": "ضدآفتاب روزانه با برنج و پروبیوتیک‌ها برای تکمیل روتین مراقبت پوست.",
+    "price": 5200000,
+    "category": "ضدآفتاب"
+  },
+  {
+    "id": "cosrx-hydrium-cream",
+    "name": "کرم آبرسان Hydrium کوزارکس",
+    "brand": "COSRX",
+    "image": "https://skininseoul.com/cdn/shop/products/019000000009.png?v=1638042384",
+    "description": "کرم مرطوب‌کننده برای کمک به حفظ رطوبت و لطافت پوست در روتین روزانه.",
+    "price": 6400000,
+    "category": "مراقبت پوست"
+  }
 ];
 
+
+
 function renderGlowProducts(){
- const grid=document.getElementById("gloweAddedProducts");
- if(grid){const isStore=location.pathname.endsWith("store.html");const requestedBrand=(new URLSearchParams(location.search).get("brand")||"").replace(/%20/g," ").toUpperCase();const brandAliases={"REVOLUTION":"MAKEUP REVOLUTION"};const normalizedBrand=brandAliases[requestedBrand]||requestedBrand;const baseProducts=isStore?GLOWE_PRODUCTS:GLOWE_PRODUCTS.slice(0,4);const visibleProducts=normalizedBrand?baseProducts.filter(p=>p.brand.toUpperCase()===normalizedBrand):baseProducts;const countLabel=document.querySelector("#new-arrivals .shop-count");if(countLabel&&normalizedBrand)countLabel.textContent=`${visibleProducts.length.toLocaleString("fa-IR")} محصول از ${normalizedBrand}`;grid.innerHTML=visibleProducts.map(p=>`<article class="product-card" data-search="${p.name} ${p.brand} ${p.category}"><a class="product-detail-link" href="product.html?product=${p.id}"><div class="product-image"><img src="${p.image}" alt="${p.name}" loading="lazy"></div></a><div class="product-info"><small>${p.brand}</small><a class="product-title-link" href="product.html?product=${p.id}"><h3>${p.name}</h3></a><p class="catalog-desc">${p.description}</p><div class="price-row"><strong>${p.price.toLocaleString("fa-IR")} <small>تومان</small></strong><a class="catalog-view" href="product.html?product=${p.id}">مشاهده</a></div></div></article>`).join("");}
+ const params=new URLSearchParams(location.search);
+ const requestedBrand=(params.get("brand")||"").toUpperCase();
+ const category=params.get("category")||"";
+ const query=(params.get("q")||"").trim().toLocaleLowerCase("fa");
+ const aliases={"REVOLUTION":"MAKEUP REVOLUTION"};
+ const normalizedBrand=aliases[requestedBrand]||requestedBrand;
+ const matches=(p)=> (!normalizedBrand||p.brand.toUpperCase()===normalizedBrand)
+   &&(!category||p.category===category)
+   &&(!query||`${p.name} ${p.brand} ${p.category} ${p.description}`.toLocaleLowerCase("fa").includes(query));
+ const card=(p)=>`<article class="product-card" data-search="${p.name} ${p.brand} ${p.category}">
+   <a class="product-detail-link" href="product.html?product=${encodeURIComponent(p.id)}"><div class="product-image"><img src="${p.image}" alt="${p.name}" loading="lazy"></div></a>
+   <div class="product-info"><small>${p.brand}</small><a class="product-title-link" href="product.html?product=${encodeURIComponent(p.id)}"><h3>${p.name}</h3></a>
+   <p class="catalog-desc">${p.description}</p><div class="price-row"><strong>${p.price.toLocaleString("fa-IR")} <small>تومان</small></strong>
+   <button class="add-cart" type="button" data-product-id="${p.id}" aria-label="افزودن ${p.name} به سبد خرید">+</button></div></div></article>`;
+ const storeGrid=document.getElementById("storeProducts");
+ const homeGrid=document.getElementById("gloweAddedProducts");
+ const bestGrid=document.getElementById("productGrid");
+ if(storeGrid){
+   const list=GLOWE_PRODUCTS.filter(matches);
+   storeGrid.innerHTML=list.map(card).join("")||'<p class="empty-results">محصولی با این مشخصات پیدا نشد.</p>';
+   const count=document.querySelector(".shop-count");
+   if(count)count.textContent=`${list.length.toLocaleString("fa-IR")} محصول`;
+   const title=document.querySelector(".shop-heading h2");
+   if(title&&normalizedBrand)title.textContent=`محصولات ${normalizedBrand}`;
+ }
+ if(homeGrid)homeGrid.innerHTML=GLOWE_PRODUCTS.slice(0,4).map(card).join("");
+ if(bestGrid)bestGrid.innerHTML=GLOWE_PRODUCTS.slice(0,4).map(card).join("");
  const detail=document.getElementById("dynamicProduct");
- if(detail){const id=new URLSearchParams(location.search).get("product");const p=GLOWE_PRODUCTS.find(x=>x.id===id)||GLOWE_PRODUCTS[0];detail.innerHTML=`<section class="container product-breadcrumb"><a href="index.html">خانه</a><span>‹</span><a href="store.html">فروشگاه</a><span>‹</span><span>${p.name}</span></section><section class="container product-detail page-section"><div class="product-detail-image"><img src="${p.image}" alt="${p.name}"></div><div class="product-detail-info"><span class="eyebrow">${p.brand}</span><h1>${p.name}</h1><p class="product-detail-intro">${p.description}</p><div class="detail-price">${p.price.toLocaleString("fa-IR")} تومان</div><button class="btn btn-burgundy product-add-button" id="dynamicAddCart" type="button">افزودن به سبد خرید <span>←</span></button><div class="product-assurances"><div><b>♡</b><strong>انتخابی مطمئن</strong></div><div><b>◇</b><strong>پشتیبانی خرید</strong></div><div><b>↗</b><strong>خرید آسان</strong></div></div><div class="product-description"><h2>درباره محصول</h2><p>${p.description}</p></div></div></section><section class="container page-section product-more"><a href="store.html">بازگشت به فروشگاه <span>←</span></a></section>`;const btn=document.getElementById("dynamicAddCart");btn?.addEventListener("click",()=>{const key="gloweCart";let items=[];try{items=JSON.parse(localStorage.getItem(key)||"[]")}catch(e){}const found=items.find(x=>x.name===p.name);if(found)found.qty++;else items.push({name:p.name,price:p.price,qty:1});localStorage.setItem(key,JSON.stringify(items));const count=document.getElementById("cartCount");if(count)count.textContent=items.reduce((s,x)=>s+x.qty,0).toLocaleString("fa-IR");const toast=document.getElementById("toast");if(toast){toast.textContent="محصول به سبد خرید اضافه شد.";toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),2400)}});}
+ if(detail){
+   const id=params.get("product");
+   const p=GLOWE_PRODUCTS.find(x=>x.id===id)||GLOWE_PRODUCTS[0];
+   detail.innerHTML=`<section class="container product-breadcrumb"><a href="index.html">خانه</a><span>‹</span><a href="store.html">فروشگاه</a><span>‹</span><span>${p.name}</span></section>
+   <section class="container product-detail page-section"><div class="product-detail-image"><img src="${p.image}" alt="${p.name}"></div><div class="product-detail-info"><span class="eyebrow">${p.brand}</span><h1>${p.name}</h1><p class="product-detail-intro">${p.description}</p><div class="detail-price">${p.price.toLocaleString("fa-IR")} تومان</div><p class="price-disclaimer">قیمت نمایشی است و قیمت قطعی بازار محسوب نمی‌شود.</p>
+   <button class="btn btn-burgundy product-add-button" id="dynamicAddCart" type="button" data-product-id="${p.id}">افزودن به سبد خرید <span>←</span></button>
+   <div class="product-assurances"><div><b>♡</b><strong>انتخابی مطمئن</strong></div><div><b>◇</b><strong>پشتیبانی خرید</strong></div><div><b>↗</b><strong>خرید آسان</strong></div></div>
+   <div class="product-description"><h2>درباره محصول</h2><p>${p.description}</p></div></div></section>
+   <section class="container page-section product-more"><a href="store.html">بازگشت به فروشگاه <span>←</span></a></section>`;
+ }
+ // Dynamic product controls: delegated so they work after cards are rendered.
+ if(!document.body.dataset.gloweCartBound){
+   document.body.dataset.gloweCartBound="1";
+   document.addEventListener("click",e=>{
+     const btn=e.target.closest("[data-product-id]");
+     if(!btn)return;
+     const product=GLOWE_PRODUCTS.find(x=>x.id===btn.dataset.productId);
+     if(!product)return;
+     const key="gloweCart";let items=[];
+     try{items=JSON.parse(localStorage.getItem(key)||"[]")}catch(_){}
+     const found=items.find(x=>x.id===product.id||x.name===product.name);
+     if(found)found.qty++;else items.push({id:product.id,name:product.name,price:product.price,qty:1});
+     localStorage.setItem(key,JSON.stringify(items));
+     const count=document.getElementById("cartCount");
+     if(count)count.textContent=items.reduce((sum,x)=>sum+x.qty,0).toLocaleString("fa-IR");
+     const toast=document.getElementById("toast");
+     if(toast){toast.textContent="محصول به سبد خرید اضافه شد.";toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),2400)}
+   });
+ }
 }
 document.addEventListener("DOMContentLoaded",renderGlowProducts);
